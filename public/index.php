@@ -47,7 +47,7 @@ $routes = [
 if (array_key_exists($uri, $routes)) {
     list($controllerName, $action) = explode('@', $routes[$uri]);
     $controllerName = 'App\\Controllers\\' . $controllerName;
-    $controller = new $controllerName();
+    $controller = new $controllerName($blade);
     $controller->$action();
 } else {
     http_response_code(404);
