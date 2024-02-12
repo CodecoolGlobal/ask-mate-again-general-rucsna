@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controller;
+namespace app\Controllers;
 
 use \eftec\bladeone\BladeOne;
 
