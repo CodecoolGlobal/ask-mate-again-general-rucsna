@@ -1,0 +1,17 @@
+{
+  "name": "nolex/mini-mvc-framework",
+  "description": "Mini MVC PHP framework",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    },
+    "classmap": [
+      "app/"
+    ]
+  },
+  "require": {
+    "eftec/bladeone": "^4.11",
+    "psr/log": "^3.0",
+    "ext-pdo": "*"
+  }
+}
