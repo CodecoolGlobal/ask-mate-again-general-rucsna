@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Superglobals;
+namespace App\Superglobals;
 class SuperglobalsManager
 {
     public function getRequestData($key = null)

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Logging;
+namespace App\Logging;
 
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerTrait;
