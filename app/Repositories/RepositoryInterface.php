@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Repositories;
+namespace App\Repositories;
 
 interface RepositoryInterface
 {
@@ -8,7 +8,7 @@ interface RepositoryInterface
 
     public function find(int $id);
 
-    public function save($entity): void;
+    public function save($entity): int;
 
     public function update($entity): void;
 
