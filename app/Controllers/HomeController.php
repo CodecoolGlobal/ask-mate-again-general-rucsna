@@ -1,10 +1,10 @@
 <?php
 
-namespace app\Controllers;
+namespace App\Controllers;
 
 class HomeController
 {
-    public function index()
+    public function index(): void
     {
         echo $GLOBALS['blade']->run('home');
     }
