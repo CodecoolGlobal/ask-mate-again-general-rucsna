@@ -8,10 +8,6 @@ $viewsPath = dirname(__DIR__) . '/app/Views';
 $cachePath = dirname(__DIR__) . '/cache';
 $blade = new BladeOne($viewsPath, $cachePath);
 
-$configFile = dirname(__DIR__) . '/app/config/config.json';
-$configJson = file_get_contents($configFile);
-$config = json_decode($configJson, true);
-
 $allowedMethods = $config['allowedMethods'] ?? [];
 $allowedIPs = $config['allowedIPs'] ?? [];
 $allowedBrowsers = $config['allowedBrowsers'] ?? [];
