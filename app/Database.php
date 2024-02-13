@@ -1,13 +1,16 @@
 <?php
 namespace App;
 
+use PDO;
+
 class Database
 {
     private static ?Database $instance = null;
     private PDO $connection;
     private function __construct()
     {
-        $config = json_decode(file_get_contents('config.json'), true);
+        $configPath = __DIR__ . '/config/config.json';
+        $config = json_decode(file_get_contents($configPath), true);
 
         $dsn = 'mysql:host=' . $config['database']['host'] . ';dbname=' . $config['database']['database_name'];
         $username = $config['database']['username'];
@@ -15,6 +18,7 @@ class Database
 
         $connection = new PDO($dsn, $username, $password);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         $this->connection = $connection;
     }
 
