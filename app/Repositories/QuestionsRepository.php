@@ -6,12 +6,11 @@ use app\Database;
 
 class QuestionsRepository implements RepositoryInterface
 {
-    private Database $database;
     private PDO $PDO;
 
-    public function __construct(array $config)
+    public function __construct()
     {
-        $this->PDO = $this->database::connect($config);
+        $this->PDO = Database::connect();
     }
 
     public function findAll(): array
