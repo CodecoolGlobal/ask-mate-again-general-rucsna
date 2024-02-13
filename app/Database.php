@@ -6,7 +6,7 @@ use PDO;
 
 class Database
 {
-    public static function connect()
+    public static function connect(): PDO
     {
         $configFile = dirname(__DIR__) . '/app/config/config.json';
         $configJson = file_get_contents($configFile);
