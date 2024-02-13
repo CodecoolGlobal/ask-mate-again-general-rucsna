@@ -6,11 +6,31 @@ use PDO;
 
 class Database
 {
-    public static function connect($config)
+    private static ?Database $instance = null;
+    private PDO $connection;
+    private function __construct()
     {
-        $dsn = "mysql:host={$config['host']};dbname={$config['database_name']};charset=utf8mb4";
-        $pdo = new PDO($dsn, $config['username'], $config['password']);
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-        return $pdo;
+        $config = json_decode(file_get_contents('config.json'), true);
+
+        $dsn = 'mysql:host=' . $config['database']['host'] . ';dbname=' . $config['database']['database_name'];
+        $username = $config['database']['username'];
+        $password = $config['database']['password'];
+
+        $connection = new PDO($dsn, $username, $password);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->connection = $connection;
+    }
+
+    public static function getInstance(): ?Database
+    {
+        if(!self::$instance) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
+
+    public function getConnection(): PDO
+    {
+        return $this->connection;
     }
 }
