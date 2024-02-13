@@ -19,7 +19,7 @@ class AuthController extends BaseController
         $password = $_POST['password'];
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-        $pdo = Database::connect();
+        $pdo = Database::getInstance()->getConnection();
         $stmt = $pdo->prepare("INSERT INTO registered_user (email, password_hash) VALUES (?, ?)");
         $stmt->execute([$email, $passwordHash]);
 
@@ -37,7 +37,7 @@ class AuthController extends BaseController
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $pdo = Database::connect();
+        $pdo = Database::getInstance()->getConnection();
         $stmt = $pdo->prepare("SELECT * FROM registered_user WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
