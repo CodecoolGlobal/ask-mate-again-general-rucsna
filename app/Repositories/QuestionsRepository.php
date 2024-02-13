@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use app\Database;
+use PDO;
 
 class QuestionsRepository implements RepositoryInterface
 {
