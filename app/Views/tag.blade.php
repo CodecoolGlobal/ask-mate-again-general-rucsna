@@ -18,7 +18,7 @@
     <h2>Tag quantity per category:</h2>
     <ul>
         @foreach($quantities as $quantity)
-            <li>Category-Id: {{$quantity->id_tag}} -> Quantity: {{$quantity->quantity}}</li>
+            <li>{{$quantity->name}} -> Quantity: {{$quantity->quantity}}</li>
         @endforeach
     </ul>
 </body>

@@ -10,7 +10,7 @@ ini_set('display_errors', 1);
 
 class TagController extends BaseController
 {
-    public function displayTag(): void
+    public function handleTags(): void
     {
         try {
             $tagRepo = new TagsRepository();
