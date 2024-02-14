@@ -44,7 +44,7 @@ $routes = [
     '/login-action' => 'AuthController@login',
     '/logout' => 'AuthController@logout',
     '/dashboard' => 'DashboardController@index',
-    '/tag-list' => 'TagController@displayTag',
+    '/tag-list' => 'TagController@handleTags',
 ];
 
 

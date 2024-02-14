@@ -19,8 +19,9 @@ class TagsRepository
    {
        $db = Database::getInstance()->getConnection();
        $query = $db->prepare('
-            SELECT id_tag, COUNT(id_tag) AS quantity 
+            SELECT name, COUNT(id_tag) AS quantity 
             FROM rel_question_tag
+            JOIN tag ON rel_question_tag.id_tag = tag.id
             GROUP BY id_tag');
        $query->execute();
 
