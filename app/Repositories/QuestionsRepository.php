@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use app\Database;
+use App\Database;
 use PDO;
 
 class QuestionsRepository implements RepositoryInterface
@@ -11,7 +11,7 @@ class QuestionsRepository implements RepositoryInterface
 
     public function __construct()
     {
-        $this->PDO = Database::connect();
+        $this->PDO = Database::getInstance()->getConnection();
     }
 
     public function findAll(): array
@@ -20,26 +20,28 @@ class QuestionsRepository implements RepositoryInterface
         $selectAll = $this->PDO->query($sql);
 
         $questions = [];
-        while ($row = $selectAll->fetch()){
+        while ($row = $selectAll->fetch(PDO::FETCH_ASSOC)){
             $questions[] = $row;
         }
         return $questions;
     }
 
-    public function find(int $id)
+    public function find(int $id): object
     {
-        // TODO: Implement find() method.
+        $sql = 'SELECT * FROM question WHERE id = :id';
+        $selectQuestionById = $this->PDO->prepare($sql);
+        $selectQuestionById->execute(['id' => $id]);
+
+        return $selectQuestionById->fetch();
     }
 
     public function save($entity): int
     {
         $sql = 'INSERT INTO question(id_image, id_registered_user, title, message) VALUES(:id_image, :id_registered_user, :title, :message)';
         $insertNewQuestion = $this->PDO->prepare($sql);
-        $insertNewQuestion->execute(['image_id' => $entity['image_id'], 'id_registered_user' => $entity['id_registered_user'], 'title' => $entity['title'], 'message' => $entity['message']]);
+        $insertNewQuestion->execute(['id_image' => $entity['image_id'], 'id_registered_user' => $entity['user_id'], 'title' => $entity['title'], 'message' => $entity['message']]);
 
-        $id = $this->PDO->lastInsertId();
-        echo "Question $id added";
-        return $id;
+        return $this->PDO->lastInsertId();
     }
 
     public function update($entity): void
