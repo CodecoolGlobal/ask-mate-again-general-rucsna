@@ -44,6 +44,7 @@ $routes = [
     '/login-action' => 'AuthController@login',
     '/logout' => 'AuthController@logout',
     '/dashboard' => 'DashboardController@index',
+    '/saveQuestion-action' => 'DashboardController@saveQuestion'
 ];
 
 
