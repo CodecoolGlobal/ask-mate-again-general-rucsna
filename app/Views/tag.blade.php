@@ -15,11 +15,18 @@
         @endforeach
     </ul>
 
-    <h2>Tag quantity per category:</h2>
-    <ul>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Quantity</th>
+        </tr>
+
         @foreach($quantities as $quantity)
-            <li>{{$quantity->name}} -> Quantity: {{$quantity->quantity}}</li>
+            <tr>
+                <td>{{$quantity->name}}</td>
+                <td>{{$quantity->quantity}}</td>
+            </tr>
         @endforeach
-    </ul>
+    </table>
 </body>
 </html>
