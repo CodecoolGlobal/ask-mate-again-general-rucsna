@@ -17,7 +17,7 @@
     <h1>Questions</h1>
     <table>
         <tr>
-            <th>Title:</th>
+            <th>Title</th>
             <th>Message</th>
             <th>Vote number</th>
         </tr>
@@ -25,7 +25,7 @@
             <tr>
                 <td>{{$question['title']}}</td>
                 <td>{{$question['message']}}</td>
-                <td>{{$question['vote_number']}}</td>
+                <td>{{$question['vote_number']}}</td><br/>
             </tr>
     </table>
     @endforeach
