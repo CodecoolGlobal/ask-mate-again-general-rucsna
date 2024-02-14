@@ -26,4 +26,16 @@ class TagsRepository
 
        return $query->fetchAll();
    }
+
+   public function displayTags($id): bool|array
+   {
+       $db = Database::getInstance()->getConnection();
+       $query = $db->prepare("
+            SELECT name FROM rel_question_tag
+            JOIN tag ON rel_question_tag.id_tag = tag.id
+            WHERE id_question=$id");
+       $query->execute();
+
+       return $query->fetchAll();
+   }
 }
