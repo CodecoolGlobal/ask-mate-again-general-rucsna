@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +27,15 @@
                 <td>{{$question['title']}}</td>
                 <td>{{$question['message']}}</td>
                 <td>{{$question['vote_number']}}</td>
+                @if(isset($_SESSION['user_id']))
+                <td>
+                    <form action="/vote" method="post">
+                        <input type="hidden" name="question_id" value="{{$question['id']}}">
+                        <button type="submit" name="vote" value="up">Upvote</button>
+                        <button type="submit" name="vote" value="down">Downvote</button>
+                    </form>
+                </td>
+                @endif
             </tr>
         </table>
     @endforeach
