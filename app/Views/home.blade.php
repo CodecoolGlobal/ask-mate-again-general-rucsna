@@ -14,7 +14,21 @@
 </nav>
 
 <div>
-    <h1>Hey there!</h1>
+    <h1>Questions</h1>
+    @foreach($questions as $question)
+        <table>
+            <tr>
+                <th>Title:</th>
+                <th>Message</th>
+                <th>Vote number</th>
+            </tr>
+            <tr>
+                <td>{{$question['title']}}</td>
+                <td>{{$question['message']}}</td>
+                <td>{{$question['vote_number']}}</td>
+            </tr>
+        </table>
+    @endforeach
 </div>
 </body>
 </html>
