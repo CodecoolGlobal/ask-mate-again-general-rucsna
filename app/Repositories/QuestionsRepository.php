@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use app\Database;
+use App\Database;
 use PDO;
 
 class QuestionsRepository implements RepositoryInterface
@@ -11,7 +11,7 @@ class QuestionsRepository implements RepositoryInterface
 
     public function __construct()
     {
-        $this->PDO = Database::connect();
+        $this->PDO = Database::getInstance()->getConnection();
     }
 
     public function findAll(): array
@@ -20,15 +20,19 @@ class QuestionsRepository implements RepositoryInterface
         $selectAll = $this->PDO->query($sql);
 
         $questions = [];
-        while ($row = $selectAll->fetch()){
+        while ($row = $selectAll->fetch(PDO::FETCH_ASSOC)){
             $questions[] = $row;
         }
         return $questions;
     }
 
-    public function find(int $id)
+    public function find(int $id): object
     {
-        // TODO: Implement find() method.
+        $sql = 'SELECT * FROM question WHERE (id = :id)';
+        $selectQuestionById = $this->PDO->query($sql);
+        $selectQuestionById->execute(['id' => $id]);
+
+        return $selectQuestionById->fetch();
     }
 
     public function save($entity): int
