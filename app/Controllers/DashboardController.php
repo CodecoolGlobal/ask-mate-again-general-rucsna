@@ -22,6 +22,7 @@ class DashboardController extends BaseController
 
     public function saveQuestion(): void
     {
+        session_start();
         $entity = ['image_id' => $_POST['image_id'], 'user_id' => $_SESSION['user_id'], 'title' => $_POST['title'], 'message' => $_POST['message']];
         $this->repository->save($entity);
     }
