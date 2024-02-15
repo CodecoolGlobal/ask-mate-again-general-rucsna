@@ -3,7 +3,7 @@ if(!isset($_SESSION)) {
     session_start();
 }
 ?>
-<link type="text/css" rel="stylesheet" href="/public/css/dashboard.css">
+<link type="text/css" rel="stylesheet" href="../../public/css/style.css">
 
 
 <nav>

@@ -6,11 +6,11 @@
     <title>Question Display Page</title>
 </head>
 <body>
+@include('base')
 <h3>You can edit your question</h3>
-<h5>You can only change the fields marked with *</h5>
 <form method="post" action="/updateQuestion-action">
     <label for="question_title">Title</label>
-    <input type="text" id="question_title" name="title" value="{{$question->title}}"> *<br/>
+    <input type="text" id="question_title" name="title" value="{{$question->title}}"><br/>
     <label for="question_message">Message</label>
     <input type="text" id="question_message" name="message" value="{{$question->message}}"><br/>
     <label for="question_vote_nr">Vote number</label>
@@ -31,14 +31,12 @@
 
     <ul>
         @foreach($questionTags as $tag)
-            <li>{{$tag->name}}</li>
+            <p>{{$tag->name}}</p>
         @endforeach
     </ul>
 
     <input type="hidden" name="question_id" value="{{$question->id}}">
     <button type="submit" name="submit">Update</button>
 </form>
-
-<a href="/dashboard">Back</a>
 </body>
 </html>

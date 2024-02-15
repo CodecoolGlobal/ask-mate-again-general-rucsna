@@ -7,15 +7,7 @@
     <title>Home</title>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="/registration-form">Register</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/tag-list">Tags</a></li>
-        <li><a href="/user-list">User list</a></li>
-    </ul>
-</nav>
+@include('base')
 
 <form method="post" action="/search">
     <input type="text" name="query" placeholder="Enter your search query">
