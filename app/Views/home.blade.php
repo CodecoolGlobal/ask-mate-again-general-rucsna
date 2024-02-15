@@ -33,21 +33,15 @@
                 @if(isset($_SESSION['user_id']))
                 <td>
                     <form action="/vote" method="post">
-                        <input type="hidden" name="question_id" value="{{$question['id']}}">
+                        <input type="hidden" name="id" value="{{$question['id']}}">
                         <button type="submit" name="vote" value="up">Upvote</button>
                         <button type="submit" name="vote" value="down">Downvote</button>
                     </form>
                 </td>
                 <td>
-                    <form action="/answer" method="post">
-                        <input type="hidden" name="question_id" value="{{$question['id']}}">
-                        <button type="submit" name="vote" value="up">Answer</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="/list-answers" method="post">
-                        <input type="hidden" name="question_id" value="{{$question['id']}}">
-                        <button type="submit" name="vote" value="up">List Answers</button>
+                    <form method="post" action="/answer">
+                        <input type="hidden" name="id" value="{{$question['id']}}">
+                        <input type="submit" name="update" value="Show">
                     </form>
                 </td>
                 @endif
