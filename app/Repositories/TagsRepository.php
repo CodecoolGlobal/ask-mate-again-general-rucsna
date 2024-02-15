@@ -34,9 +34,17 @@ class TagsRepository
        $query = $db->prepare("
             SELECT name FROM rel_question_tag
             JOIN tag ON rel_question_tag.id_tag = tag.id
-            WHERE id_question=$id");
-       $query->execute();
+            WHERE id_question=?");
+       $query->execute([$id]);
 
        return $query->fetchAll();
+   }
+
+   public function saveTag($name): int
+   {
+       $db = Database::getInstance()->getConnection();
+       $query = $db->prepare("INSERT INTO tag(name) VALUES (:name)");
+       $query->execute(['name' => $name['name']]);
+       return $db->lastInsertId();
    }
 }

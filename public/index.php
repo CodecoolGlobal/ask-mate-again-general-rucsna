@@ -44,9 +44,13 @@ $routes = [
     '/login-action' => 'AuthController@login',
     '/logout' => 'AuthController@logout',
     '/dashboard' => 'DashboardController@index',
-    '/saveQuestion-action' => 'DashboardController@saveQuestion',
-    '/vote' => 'HomeController@vote',
-    '/tag-list' => 'TagController@handleTags'
+    '/saveQuestion-action' => 'QuestionController@saveQuestion',
+    '/tag-list' => 'TagController@handleTags',
+    '/tag-form' => 'TagController@useTagForm',
+    '/save-tag' => 'TagController@addTaggit pull',
+    '/deleteQuestion-action' =>'QuestionController@deleteQuestion',
+    '/redirectForQuestionUpdate-action' => 'QuestionController@goToQuestionPage',
+    '/vote' => 'HomeController@vote'
 ];
 
 
