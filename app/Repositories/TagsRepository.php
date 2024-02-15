@@ -32,13 +32,13 @@ class TagsRepository
        return $query->fetchAll();
    }
 
-   public function displayTags($id): bool|array
+   public function displayTags($question_id): bool|array
    {
        $query = $this->db->prepare("
             SELECT name FROM rel_question_tag
             JOIN tag ON rel_question_tag.id_tag = tag.id
             WHERE id_question=?");
-       $query->execute([$id]);
+       $query->execute([$question_id]);
 
        return $query->fetchAll();
    }
@@ -48,5 +48,11 @@ class TagsRepository
        $query = $this->db->prepare("INSERT INTO tag(name) VALUES (:name)");
        $query->execute(['name' => $name['name']]);
        return $this->db->lastInsertId();
+   }
+
+   public function addTagToQuestion($question_id, $tag_id): void
+   {
+       $query = $this->db->prepare("INSERT INTO rel_question_tag(id_question, id_tag) VALUES (?, ?)");
+       $query->execute([$question_id, $tag_id]);
    }
 }

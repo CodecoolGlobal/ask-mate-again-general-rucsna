@@ -53,6 +53,9 @@ class QuestionController extends BaseController
         );
         //var_dump($questionToUpdate);
         $this->repository->update($questionToUpdate);
+
+        $this->tagsRepository->addTagToQuestion($_POST['question_id'], $_POST['tag_id']);
+
         header('Location: /dashboard');
     }
 

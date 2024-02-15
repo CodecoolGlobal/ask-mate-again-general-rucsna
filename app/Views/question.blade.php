@@ -18,11 +18,11 @@
     <label for="question_submission">Submission time</label>
     <input type="datetime-local" id="question_submission" value="{{$question->submission_time}}" readonly><br/>
 
-    <br><label for="tag_name">Add Tag:</label><br/>
-    <select name="tag_name" id="tag_name">
+    <br><label for="tag_id">Add Tag:</label><br/>
+    <select name="tag_id" id="tag_id">
         <option disabled selected value style="display:none"> -- select an option -- </option>
         @foreach($tags as $tag)
-            <option>{{$tag->name}}</option>
+            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
         @endforeach
     </select>
     <a href="/tag-form">Create a new Tag</a><br/>
