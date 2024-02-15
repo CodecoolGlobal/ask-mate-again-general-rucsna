@@ -1,4 +1,4 @@
-<IfModule mod_rewrite.c>
+#<IfModule mod_rewrite.c>
 RewriteEngine On
 
 RewriteRule ^public/ - [L]
@@ -7,4 +7,4 @@ RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
 RewriteRule (.+) public/$1 [L]
 
 RewriteRule (.*) public/index.php?route=$1 [L,QSA]
-</IfModule>
+#</IfModule>

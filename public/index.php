@@ -45,7 +45,8 @@ $routes = [
     '/logout' => 'AuthController@logout',
     '/dashboard' => 'DashboardController@index',
     '/saveQuestion-action' => 'DashboardController@saveQuestion',
-    '/vote' => 'HomeController@vote'
+    '/vote' => 'HomeController@vote',
+    '/tag-list' => 'TagController@handleTags'
 ];
 
 

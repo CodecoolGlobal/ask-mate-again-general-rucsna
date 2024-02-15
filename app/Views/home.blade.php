@@ -11,18 +11,19 @@
     <ul>
         <li><a href="/registration-form">Register</a></li>
         <li><a href="/login">Login</a></li>
+        <li><a href="/tag-list">Tags</a></li>
     </ul>
 </nav>
 
 <div>
     <h1>Questions</h1>
-    @foreach($questions as $question)
-        <table>
-            <tr>
-                <th>Title:</th>
-                <th>Message</th>
-                <th>Vote number</th>
-            </tr>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Message</th>
+            <th>Vote number</th>
+        </tr>
+        @foreach($questions as $question)
             <tr>
                 <td>{{$question['title']}}</td>
                 <td>{{$question['message']}}</td>
@@ -37,7 +38,7 @@
                 </td>
                 @endif
             </tr>
-        </table>
+    </table>
     @endforeach
 </div>
 </body>

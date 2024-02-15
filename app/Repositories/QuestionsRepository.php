@@ -28,8 +28,8 @@ class QuestionsRepository implements RepositoryInterface
 
     public function find(int $id): object
     {
-        $sql = 'SELECT * FROM question WHERE (id = :id)';
-        $selectQuestionById = $this->PDO->query($sql);
+        $sql = 'SELECT * FROM question WHERE id = :id';
+        $selectQuestionById = $this->PDO->prepare($sql);
         $selectQuestionById->execute(['id' => $id]);
 
         return $selectQuestionById->fetch();
@@ -39,11 +39,9 @@ class QuestionsRepository implements RepositoryInterface
     {
         $sql = 'INSERT INTO question(id_image, id_registered_user, title, message) VALUES(:id_image, :id_registered_user, :title, :message)';
         $insertNewQuestion = $this->PDO->prepare($sql);
-        $insertNewQuestion->execute(['image_id' => $entity['image_id'], 'id_registered_user' => $entity['id_registered_user'], 'title' => $entity['title'], 'message' => $entity['message']]);
+        $insertNewQuestion->execute(['id_image' => $entity['image_id'], 'id_registered_user' => $entity['user_id'], 'title' => $entity['title'], 'message' => $entity['message']]);
 
-        $id = $this->PDO->lastInsertId();
-        echo "Question $id added";
-        return $id;
+        return $this->PDO->lastInsertId();
     }
 
     public function update($entity): void
