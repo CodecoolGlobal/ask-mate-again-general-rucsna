@@ -49,7 +49,8 @@ $routes = [
     '/tag-form' => 'TagController@useTagForm',
     '/save-tag' => 'TagController@addTag',
     '/deleteQuestion-action' =>'QuestionController@deleteQuestion',
-    '/redirectForQuestionUpdate-action' => 'QuestionController@goToQuestionPage'
+    '/redirectForQuestionUpdate-action' => 'QuestionController@goToQuestionPage',
+    '/vote' => 'HomeController@vote'
 ];
 
 
