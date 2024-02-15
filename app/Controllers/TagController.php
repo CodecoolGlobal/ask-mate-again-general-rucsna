@@ -18,6 +18,28 @@ class TagController extends BaseController
             $quantities = $tagRepo->displayTagCategoryQuantity();
 
             echo $this->blade->run('tag', ['tags' => $tags, 'quantities' => $quantities]);
+            echo $this->blade->run('dashboard', ['tags' => $tags]);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function addTag(): void
+    {
+        try {
+            $newTag = ['name' => $_POST['name']];
+            $tagRepo = new TagsRepository();
+            $tagRepo->saveTag($newTag);
+            header('location: /dashboard');
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function useTagForm(): void
+    {
+        try {
+            echo $this->blade->run('new_tag_form');
         } catch (Exception $e) {
             echo $e->getMessage();
         }

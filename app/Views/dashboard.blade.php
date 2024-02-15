@@ -9,6 +9,17 @@
         <label for="question_message">Message</label>
         <input type="text" id="question_message" name="message" value="Write a question"><br/>
         <input type="hidden" name="image_id" value="1">
+
+        <br><label for="name">Choose a Tag:</label><br/>
+        <select name="name" id="name">
+            @foreach($tags as $tag)
+                <option>{{$tag}}</option>
+            @endforeach
+        </select>
+
+        <a href="/tag-form">Create a new Tag</a><br/>
+        <br/>
+
         <button type="submit" name="submit">Save</button>
     </form>
     <nav>
