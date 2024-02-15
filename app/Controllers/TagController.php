@@ -18,7 +18,6 @@ class TagController extends BaseController
             $quantities = $tagRepo->displayTagCategoryQuantity();
 
             echo $this->blade->run('tag', ['tags' => $tags, 'quantities' => $quantities]);
-            echo $this->blade->run('dashboard', ['tags' => $tags]);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
