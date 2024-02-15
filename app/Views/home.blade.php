@@ -38,8 +38,8 @@
                 </td>
                 @endif
             </tr>
+        @endforeach
     </table>
-    @endforeach
 </div>
 </body>
 </html>
