@@ -22,6 +22,21 @@
 
         <button type="submit" name="submit">Save</button>
     </form>
+    <label for="question_list"><b>Your questions</b></label><br/><br/>
+    <table id="question_list">
+        @foreach($questions as $question)
+            <tr>{{$question['title']}}</tr>
+            <form method="post" action="/deleteQuestion-action">
+                <input type="hidden" name="question_id" value="{{$question['id']}}">
+                <input type="submit" name="delete" value="Delete">
+            </form>
+            <form method="post" action="/redirectForQuestionUpdate-action">
+                <input type="hidden" name="question_id" value="{{$question['id']}}">
+                <input type="submit" name="update" value="Update">
+            </form>
+            <br/>
+        @endforeach
+    </table>
     <nav>
         <ul>
             <li><a href="/logout">Logout</a></li>

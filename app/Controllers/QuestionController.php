@@ -22,17 +22,38 @@ class QuestionController extends BaseController
     {
         session_start();
         $entity = ['image_id' => $_POST['image_id'], 'user_id' => $_SESSION['user_id'], 'title' => $_POST['title'], 'message' => $_POST['message']];
-        $questionId = $this->repository->save($entity);
-        $question = $this->repository->find($questionId);
+        $this->repository->save($entity);
+//        $questions = $this->repository->findQuestionsByUser($_SESSION['user_id']);
+//        try {
+//            echo $this->blade->run('dashboard', ['questions' => $questions]);
+//        } catch (Exception $e) {
+//            echo "$e";
+//        }
+        header("Location: /dashboard");
+        exit;
+    }
+
+    public function goToQuestionPage(): void
+    {
+        $questionId = $_POST['question_id'];
+        $questionToUpdate = $this->repository->find($questionId);
         try {
-            echo $this->blade->run('question', ['question' => $question]);
+            echo $this->blade->run('question', ['question' => $questionToUpdate]);
         } catch (Exception $e) {
             echo "$e";
         }
+//        $this->repository->update($questionToUpdate);
     }
 
-//    public function displayQuestionById(): void
-//    {
-//        $question = $this->repository->find()
-//    }
+    public function updateQuestion(): void
+    {
+
+    }
+
+    public function deleteQuestion(): void
+    {
+        $questionId = $_POST['question_id'];
+        $this->repository->delete($questionId);
+        header("Location: /dashboard");
+    }
 }

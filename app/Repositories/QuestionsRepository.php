@@ -46,11 +46,26 @@ class QuestionsRepository implements RepositoryInterface
 
     public function update($entity): void
     {
-        // TODO: Implement update() method.
+        $sql = 'UPDATE question SET title = :title, message = :message WHERE id = :id';
+        $updateQuestion = $this->PDO->prepare($sql);
+        $updateQuestion->execute(['title' => $entity['title'], 'message' => $entity['message'], 'id' => $entity['id']]);
+        echo "question $entity updated";
     }
 
     public function delete(int $id): void
     {
-        // TODO: Implement delete() method.
+        $sql = 'DELETE FROM question WHERE id = :id';
+        $deleteQuestion = $this->PDO->prepare($sql);
+        $deleteQuestion->execute(['id' => $id]);
+        echo "question $id deleted";
+    }
+
+    public function findQuestionsByUser(int $user_id): array
+    {
+        $sql = 'SELECT * FROM question WHERE id_registered_user = :id_registered_user';
+        $selectQuestions = $this->PDO->prepare($sql);
+        $selectQuestions->execute(['id_registered_user' => $user_id]);
+
+        return $selectQuestions->fetchAll(PDO::FETCH_ASSOC);
     }
 }
