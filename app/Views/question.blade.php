@@ -28,6 +28,13 @@
     <br/><br/>
 
     <label>Tags</label> *<br/>
+
+    <ul>
+        @foreach($questionTags as $tag)
+            <li>{{$tag->name}}</li>
+        @endforeach
+    </ul>
+
     <input type="hidden" name="question_id" value="{{$question->id}}">
     <button type="submit" name="submit">Update</button>
 </form>

@@ -34,10 +34,11 @@ class QuestionController extends BaseController
     {
         $questionId = $_POST['question_id'];
         $tags = $this->tagsRepository->displayAllTags();
+        $questionTags = $this->tagsRepository->displayTags($questionId);
         $currentQuestion = $this->repository->find($questionId);
 
         try {
-            echo $this->blade->run('question', ['question' => $currentQuestion, 'tags' => $tags]);
+            echo $this->blade->run('question', ['question' => $currentQuestion, 'tags' => $tags, 'questionTags' => $questionTags]);
         } catch (Exception $e) {
             echo "$e";
         }
