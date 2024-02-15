@@ -31,7 +31,7 @@
             <form action="/answerAction" method="post">
                 <input type="hidden" name="answer_id" value="{{$answer->id}}">
                 <button type="submit" name="answer" value="delete">Delete</button>
-                <input type="text" id="message" name="message" required><br><br>
+                <input type="text" id="message" name="message"><br><br>
                 <button type="submit" name="answer" value="edit">Edit</button>
             </form>
             <form action="/vote" method="post">
