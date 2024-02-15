@@ -55,4 +55,9 @@ class TagsRepository
        $query = $this->db->prepare("INSERT INTO rel_question_tag(id_question, id_tag) VALUES (?, ?)");
        $query->execute([$question_id, $tag_id]);
    }
+
+   public function deleteTagFromQuestion($tag_id): void
+   {
+        $query = $this->db->prepare("");
+   }
 }

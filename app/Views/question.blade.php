@@ -32,7 +32,7 @@
 
     <ul>
         @foreach($questionTags as $tag)
-            <li>{{$tag->name}}</li>
+            <li>{{$tag->name}} <a href="/dashboard">X</a> </li>
         @endforeach
     </ul>
 

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Repositories\TagsRepository;
+use eftec\bladeone\BladeOne;
 use Exception;
 
 error_reporting(E_ALL);
@@ -10,12 +11,18 @@ ini_set('display_errors', 1);
 
 class TagController extends BaseController
 {
+    private TagsRepository $tagRepo;
+    public function __construct(BladeOne $blade)
+    {
+        parent::__construct($blade);
+        $this->tagRepo = new TagsRepository();
+    }
+
     public function handleTags(): void
     {
         try {
-            $tagRepo = new TagsRepository();
-            $tags = $tagRepo->displayAllTags();
-            $quantities = $tagRepo->displayTagCategoryQuantity();
+            $tags = $this->tagRepo->displayAllTags();
+            $quantities = $this->tagRepo->displayTagCategoryQuantity();
 
             echo $this->blade->run('tag', ['tags' => $tags, 'quantities' => $quantities]);
         } catch (Exception $e) {
@@ -27,8 +34,7 @@ class TagController extends BaseController
     {
         try {
             $newTag = ['name' => $_POST['name']];
-            $tagRepo = new TagsRepository();
-            $tagRepo->saveTag($newTag);
+            $this->tagRepo->saveTag($newTag);
             header('location: /dashboard');
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -47,11 +53,12 @@ class TagController extends BaseController
     public function selectTag(): void
     {
         try {
-            $tagRepo = new TagsRepository();
-            $tags = $tagRepo->displayAllTags();
+            $tags = $this->tagRepo->displayAllTags();
             echo $this->blade->run('question', ['tags' => $tags]);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
+
+
 }

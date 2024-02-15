@@ -53,7 +53,8 @@ $routes = [
     '/vote' => 'HomeController@vote',
     '/user-list' => 'UserListController@index',
     '/questionPage' => 'QuestionController@goToQuestionPage',    
-    '/updateQuestion-action' => 'QuestionController@updateQuestion'
+    '/updateQuestion-action' => 'QuestionController@updateQuestion',
+    '/removeTag' => 'TagController@deleteTag'
 ];
 
 
