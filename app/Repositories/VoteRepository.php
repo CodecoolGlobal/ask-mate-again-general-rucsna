@@ -23,7 +23,14 @@ class VoteRepository
         return $selectVoteById->fetchColumn();
     }
 
+    private function getAnswerVoteNumber(int $Id): int
+    {
+        $sql = 'SELECT vote_number FROM answer WHERE id = ?';
+        $selectVoteById = $this->PDO->prepare($sql);
+        $selectVoteById->execute([$Id]);
 
+        return $selectVoteById->fetchColumn();
+    }
 
     public function upvote($questionId): void
     {
@@ -43,6 +50,26 @@ class VoteRepository
         $sql = 'UPDATE question SET vote_number = ? WHERE id = ?';
         $downvoteById = $this->PDO->prepare($sql);
         $downvoteById->execute([$newVoteNumber, $questionId]);
+    }
+
+    public function downvoteAnswer(mixed $Id)
+    {
+        $currentVoteNumber = $this->getAnswerVoteNumber($Id);
+        $newVoteNumber = $currentVoteNumber - 1;
+
+        $sql = 'UPDATE answer SET vote_number = ? WHERE id = ?';
+        $downvoteById = $this->PDO->prepare($sql);
+        $downvoteById->execute([$newVoteNumber, $Id]);
+    }
+
+    public function upvoteAnswer(mixed $Id)
+    {
+        $currentVoteNumber = $this->getAnswerVoteNumber($Id);
+        $newVoteNumber = $currentVoteNumber + 1;
+
+        $sql = 'UPDATE answer SET vote_number = ? WHERE id = ?';
+        $upvoteById = $this->PDO->prepare($sql);
+        $upvoteById->execute([$newVoteNumber, $Id]);
     }
 
 

@@ -8,12 +8,13 @@ if(!isset($_SESSION))
 @if(isset($_SESSION['user_id']))
     <h1>Hello, {{ $_SESSION['email'] }} !</h1>
     <h2>Ask a question</h2>
-    <form method="post" action="/saveQuestion-action">
+    <form method="post" action="/saveQuestion-action" enctype="multipart/form-data">
         <label for="question_title">Title</label>
         <input type="text" id="question_title" name="title" value="Title"><br/>
         <label for="question_message">Message</label>
         <input type="text" id="question_message" name="message" value="Write a question"><br/>
-        <input type="hidden" name="image_id" value="1">
+        <label for="question_image">Image</label>
+        <input type="file" id="question_image" name="image"><br/>
         <button type="submit" name="submit">Save</button>
     </form>
     <label for="question_list"><b>Your questions</b></label><br/><br/>

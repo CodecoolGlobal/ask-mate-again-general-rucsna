@@ -22,7 +22,13 @@ class HomeController extends BaseController
 
     public function index(): void
     {
-        $questions = $this->repository->findAll();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
+            $searchQuery = $_POST['query'];
+            $questions = $this->repository->searchQuestions($searchQuery);
+        } else {
+            $questions = $this->repository->findWithImage();
+        }
+
         try {
             echo $this->blade->run('home', ['questions' => $questions]);
         } catch (\Exception $e) {
@@ -30,16 +36,43 @@ class HomeController extends BaseController
         }
     }
 
+    public function search(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
+            $searchQuery = $_POST['query'];
+            $questions = $this->repository->findWithImage();
+
+            $filteredQuestions = array_filter($questions, function($question) use ($searchQuery) {
+                return stripos($question['title'], $searchQuery) !== false ||
+                    stripos($question['message'], $searchQuery) !== false;
+            });
+        } else {
+            $filteredQuestions = $this->repository->findWithImage();
+        }
+
+        try {
+            echo $this->blade->run('home', ['questions' => $filteredQuestions]);
+        } catch (\Exception $e) {
+            echo "$e";
+        }
+    }
+
+
     public function vote(): void
     {
         $vote = $_POST['vote'];
-        $questionId = $_POST['question_id'];
+        $Id = $_POST['id'];
 
         if($vote === 'up'){
-            $this->voteRepository->upvote($questionId);
+            $this->voteRepository->upvote($Id);
         } elseif ($vote === 'down'){
-            $this->voteRepository->downvote($questionId);
+            $this->voteRepository->downvote($Id);
+        } elseif ($vote === 'downAnswer'){
+            $this->voteRepository->downvoteAnswer($Id);
+        } elseif ($vote === 'upAnswer'){
+            $this->voteRepository->upvoteAnswer($Id);
         }
+
         header("Location: /");
     }
 

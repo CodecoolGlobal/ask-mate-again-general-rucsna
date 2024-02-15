@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Database;
+use PDO;
 
 class AnswerRepository implements RepositoryInterface
 {
@@ -25,13 +26,13 @@ class AnswerRepository implements RepositoryInterface
         return $answers;
     }
 
-    public function find(int $id)
+    public function find(int $id): bool|array
     {
-        $sql = 'SELECT * FROM answer WHERE id = :id';
+        $sql = 'SELECT * FROM answer WHERE id_question = :id';
         $selectAnswerById = $this->PDO->prepare($sql);
         $selectAnswerById->execute(['id' => $id]);
 
-        return $selectAnswerById->fetch();
+        return $selectAnswerById->fetchAll();
     }
 
     public function save($entity): int

@@ -20,11 +20,15 @@ class DashboardController extends BaseController
     public function index(): void
     {
         session_start();
-        $questions = $this->repository->findQuestionsByUser($_SESSION['user_id']);
-        try {
-            echo $this->blade->run('dashboard', ['questions' => $questions]);
-        } catch (Exception $e) {
-            echo "$e";
+        if(isset($_SESSION['user_id'])){
+            $questions = $this->repository->findQuestionsByUser($_SESSION['user_id']);
+            try {
+                echo $this->blade->run('dashboard', ['questions' => $questions]);
+            } catch (Exception $e) {
+                echo "$e";
+            }
+        } else {
+            echo $this->blade->run('dashboard');
         }
     }
 }
