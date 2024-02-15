@@ -47,7 +47,7 @@ $routes = [
     '/saveQuestion-action' => 'QuestionController@saveQuestion',
     '/tag-list' => 'TagController@handleTags',
     '/tag-form' => 'TagController@useTagForm',
-    '/save-tag' => 'TagController@addTaggit pull',
+    '/save-tag' => 'TagController@addTag',
     '/deleteQuestion-action' =>'QuestionController@deleteQuestion',
     '/redirectForQuestionUpdate-action' => 'QuestionController@goToQuestionPage'
 ];
