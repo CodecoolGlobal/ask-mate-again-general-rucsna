@@ -60,5 +60,14 @@ class TagController extends BaseController
         }
     }
 
-
+    public function deleteTag(): void
+    {
+        try {
+            $this->tagRepo->deleteTagFromQuestion($_POST['delete_question_id'], $_POST['tag_id']);
+            header('location: /dashboard');
+            exit();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }

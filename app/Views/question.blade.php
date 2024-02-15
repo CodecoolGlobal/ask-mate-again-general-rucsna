@@ -32,9 +32,16 @@
 
     <ul>
         @foreach($questionTags as $tag)
-            <li>{{$tag->name}} <a href="/dashboard">X</a> </li>
+            <li>
+                <form method="post" action="/removeTag">
+                    <input type="hidden" name="delete_question_id" value="{{$question->id}}">
+                    <input type="hidden" name="tag_id" value="{{$tag->id}}">
+                    {{$tag->name}} <button type="submit">X</button>
+                </form>
+            </li>
         @endforeach
     </ul>
+
 
     <input type="hidden" name="question_id" value="{{$question->id}}">
     <button type="submit" name="submit">Update</button>

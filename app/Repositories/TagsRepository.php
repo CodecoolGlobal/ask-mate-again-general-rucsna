@@ -35,7 +35,7 @@ class TagsRepository
    public function displayTags($question_id): bool|array
    {
        $query = $this->db->prepare("
-            SELECT name FROM rel_question_tag
+            SELECT id, name FROM rel_question_tag
             JOIN tag ON rel_question_tag.id_tag = tag.id
             WHERE id_question=?");
        $query->execute([$question_id]);
@@ -56,8 +56,9 @@ class TagsRepository
        $query->execute([$question_id, $tag_id]);
    }
 
-   public function deleteTagFromQuestion($tag_id): void
+   public function deleteTagFromQuestion($question_id, $tag_id): void
    {
-        $query = $this->db->prepare("");
+        $query = $this->db->prepare("DELETE FROM rel_question_tag WHERE id_question = ? AND id_tag = ?");
+        $query->execute([$question_id, $tag_id]);
    }
 }
