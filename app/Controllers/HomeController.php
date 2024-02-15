@@ -33,13 +33,18 @@ class HomeController extends BaseController
     public function vote(): void
     {
         $vote = $_POST['vote'];
-        $questionId = $_POST['question_id'];
+        $Id = $_POST['id'];
 
         if($vote === 'up'){
-            $this->voteRepository->upvote($questionId);
+            $this->voteRepository->upvote($Id);
         } elseif ($vote === 'down'){
-            $this->voteRepository->downvote($questionId);
+            $this->voteRepository->downvote($Id);
+        } elseif ($vote === 'downAnswer'){
+            $this->voteRepository->downvoteAnswer($Id);
+        } elseif ($vote === 'upAnswer'){
+            $this->voteRepository->upvoteAnswer($Id);
         }
+
         header("Location: /");
     }
 
