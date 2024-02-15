@@ -12,11 +12,13 @@ use JetBrains\PhpStorm\NoReturn;
 class QuestionController extends BaseController
 {
     private RepositoryInterface $repository;
+    private TagsRepository $tagsRepository;
 
     public function __construct(BladeOne $blade)
     {
         parent::__construct($blade);
         $this->repository = new QuestionsRepository();
+        $this->tagsRepository = new TagsRepository();
     }
 
     #[NoReturn] public function saveQuestion(): void
@@ -31,8 +33,7 @@ class QuestionController extends BaseController
     public function goToQuestionPage(): void
     {
         $questionId = $_POST['question_id'];
-        $tagRepo = new TagsRepository();
-        $tags = $tagRepo->displayAllTags();
+        $tags = $this->tagsRepository->displayAllTags();
         $currentQuestion = $this->repository->find($questionId);
 
         try {
