@@ -7,6 +7,7 @@ use App\Repositories\RepositoryInterface;
 use App\Repositories\TagsRepository;
 use eftec\bladeone\BladeOne;
 use Exception;
+use JetBrains\PhpStorm\NoReturn;
 
 class QuestionController extends BaseController
 {
@@ -18,17 +19,11 @@ class QuestionController extends BaseController
         $this->repository = new QuestionsRepository();
     }
 
-    public function saveQuestion(): void
+    #[NoReturn] public function saveQuestion(): void
     {
         session_start();
         $entity = ['image_id' => $_POST['image_id'], 'user_id' => $_SESSION['user_id'], 'title' => $_POST['title'], 'message' => $_POST['message']];
         $this->repository->save($entity);
-//        $questions = $this->repository->findQuestionsByUser($_SESSION['user_id']);
-//        try {
-//            echo $this->blade->run('dashboard', ['questions' => $questions]);
-//        } catch (Exception $e) {
-//            echo "$e";
-//        }
         header("Location: /dashboard");
         exit;
     }
@@ -36,18 +31,24 @@ class QuestionController extends BaseController
     public function goToQuestionPage(): void
     {
         $questionId = $_POST['question_id'];
-        $questionToUpdate = $this->repository->find($questionId);
+        $currentQuestion = $this->repository->find($questionId);
         try {
-            echo $this->blade->run('question', ['question' => $questionToUpdate]);
+            echo $this->blade->run('question', ['question' => $currentQuestion]);
         } catch (Exception $e) {
             echo "$e";
         }
-//        $this->repository->update($questionToUpdate);
     }
 
     public function updateQuestion(): void
     {
-
+        $questionToUpdate = array(
+            'id' => $_POST['question_id'],
+            'title' => $_POST['title'],
+            'message' => $_POST['message']
+        );
+        //var_dump($questionToUpdate);
+        $this->repository->update($questionToUpdate);
+        header('Location: /dashboard');
     }
 
     public function deleteQuestion(): void
