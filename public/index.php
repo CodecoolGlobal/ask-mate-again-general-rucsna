@@ -32,10 +32,9 @@ $routes = [
     '/answer' => 'AnswerController@index',
     '/saveAnswer' => 'AnswerController@saveAnswer',
     '/list-answers' => 'AnswerController@getAnswers',
-    '/answerAction' => 'AnswerController@action'
+    '/answerAction' => 'AnswerController@action',
+    '/search' => 'HomeController@search'
 ];
-
-
 
 if (array_key_exists($uri, $routes)) {
     list($controllerName, $action) = explode('@', $routes[$uri]);
