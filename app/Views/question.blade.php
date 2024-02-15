@@ -26,11 +26,11 @@
     <label for="question_title">Title</label>
     <input type="text" id="question_title" name="title" value="{{$question->title}}"> *<br/>
     <label for="question_message">Message</label>
-    <input type="text" id="question_message" name="message" value="{{$question->message}}" disabled><br/>
+    <input type="text" id="question_message" name="message" value="{{$question->message}}"><br/>
     <label for="question_vote_nr">Vote number</label>
-    <input type="number" id="question_vote_nr" value="{{$question->vote_number}}" disabled><br/>
+    <input type="number" id="question_vote_nr" value="{{$question->vote_number}}"><br/>
     <label for="question_submission">Submission time</label>
-    <input type="datetime-local" id="question_submission" value="{{$question->submission_time}}" disabled><br/>
+    <input type="datetime-local" id="question_submission" value="{{$question->submission_time}}"><br/>
 
     <br><label for="tag_id">Add Tag:</label><br/>
     <select name="tag_id" id="tag_id">

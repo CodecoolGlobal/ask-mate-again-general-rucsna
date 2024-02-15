@@ -56,7 +56,7 @@ class QuestionController extends BaseController
 
         $this->tagsRepository->addTagToQuestion($_POST['question_id'], $_POST['tag_id']);
 
-        header('Location: /dashboard');
+        header("Location: /dashboard");
     }
 
     public function deleteQuestion(): void
