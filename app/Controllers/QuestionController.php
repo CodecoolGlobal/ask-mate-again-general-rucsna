@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Repositories\AnswerRepository;
 use App\Repositories\ImageRepository;
 use App\Repositories\QuestionsRepository;
 use App\Repositories\RepositoryInterface;
@@ -15,6 +16,7 @@ class QuestionController extends BaseController
     private RepositoryInterface $repository;
     private TagsRepository $tagsRepository;
     private ImageRepository $imageRepository;
+    private RepositoryInterface $answerRepository;
 
     public function __construct(BladeOne $blade)
     {
@@ -22,6 +24,7 @@ class QuestionController extends BaseController
         $this->repository = new QuestionsRepository();
         $this->tagsRepository = new TagsRepository();
         $this->imageRepository = new ImageRepository();
+        $this->answerRepository = new AnswerRepository();
     }
 
     #[NoReturn] public function saveQuestion(): void
@@ -57,9 +60,10 @@ class QuestionController extends BaseController
         $tags = $this->tagsRepository->displayAllTags();
         $questionTags = $this->tagsRepository->displayTags($questionId);
         $currentQuestion = $this->repository->find($questionId);
+        $answers = $this->answerRepository->findAnswersByQuestionId($questionId);
 
         try {
-            echo $this->blade->run('question', ['question' => $currentQuestion, 'tags' => $tags, 'questionTags' => $questionTags]);
+            echo $this->blade->run('question', ['question' => $currentQuestion, 'tags' => $tags, 'questionTags' => $questionTags, 'answers' => $answers]);
         } catch (Exception $e) {
             echo "$e";
         }
