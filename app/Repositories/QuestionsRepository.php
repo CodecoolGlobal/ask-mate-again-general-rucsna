@@ -35,6 +35,32 @@ class QuestionsRepository implements RepositoryInterface
         return $selectQuestionById->fetch();
     }
 
+    public function searchQuestions(string $searchQuery): array
+    {
+        $sql = "SELECT q.*, i.directory, i.file_name 
+            FROM question q 
+            LEFT JOIN image i ON q.id_image = i.id
+            WHERE q.title LIKE :query OR q.message LIKE :query";
+        $searchStmt = $this->PDO->prepare($sql);
+        $searchStmt->execute(['query' => "%$searchQuery%"]);
+
+        return $searchStmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function findWithImage(): array|bool
+    {
+        $sql = 'SELECT q.*, i.directory, i.file_name 
+            FROM question q 
+            LEFT JOIN image i ON q.id_image = i.id';
+        $selectAll = $this->PDO->query($sql);
+
+        $questions = [];
+        while ($row = $selectAll->fetch(PDO::FETCH_ASSOC)){
+            $questions[] = $row;
+        }
+        return $questions;
+    }
+
     public function save($entity): int
     {
         $sql = 'INSERT INTO question(id_image, id_registered_user, title, message) VALUES(:id_image, :id_registered_user, :title, :message)';
