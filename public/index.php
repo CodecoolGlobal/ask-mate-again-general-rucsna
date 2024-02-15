@@ -33,7 +33,8 @@ $routes = [
     '/saveAnswer' => 'AnswerController@saveAnswer',
     '/list-answers' => 'AnswerController@getAnswers',
     '/answerAction' => 'AnswerController@action',
-    '/search' => 'HomeController@search'
+    '/search' => 'HomeController@search',
+    '/updateAnswer' => 'AnswerController@update'
 ];
 
 if (array_key_exists($uri, $routes)) {
