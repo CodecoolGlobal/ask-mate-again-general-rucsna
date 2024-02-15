@@ -49,7 +49,7 @@ class QuestionsRepository implements RepositoryInterface
         $sql = 'UPDATE question SET title = :title, message = :message WHERE id = :id';
         $updateQuestion = $this->PDO->prepare($sql);
         $updateQuestion->execute(['title' => $entity['title'], 'message' => $entity['message'], 'id' => $entity['id']]);
-        echo "question $entity updated";
+        //echo "question updated";
     }
 
     public function delete(int $id): void

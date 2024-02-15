@@ -24,9 +24,9 @@ if(!isset($_SESSION))
                 <input type="hidden" name="question_id" value="{{$question['id']}}">
                 <input type="submit" name="delete" value="Delete">
             </form>
-            <form method="post" action="/redirectForQuestionUpdate-action">
+            <form method="post" action="/questionPage">
                 <input type="hidden" name="question_id" value="{{$question['id']}}">
-                <input type="submit" name="update" value="Update">
+                <input type="submit" name="update" value="Show">
             </form>
             <br/>
         @endforeach
@@ -34,6 +34,7 @@ if(!isset($_SESSION))
     <nav>
         <ul>
             <li><a href="/logout">Logout</a></li>
+            <li><a href="/">Home</a></li>
         </ul>
     </nav>
 @else

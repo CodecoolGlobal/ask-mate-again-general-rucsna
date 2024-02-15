@@ -51,6 +51,9 @@ $routes = [
     '/deleteQuestion-action' =>'QuestionController@deleteQuestion',
     '/redirectForQuestionUpdate-action' => 'QuestionController@goToQuestionPage',
     '/vote' => 'HomeController@vote',
+    '/user-list' => 'UserListController@index',
+    '/questionPage' => 'QuestionController@goToQuestionPage',    
+    '/updateQuestion-action' => 'QuestionController@updateQuestion'
 ];
 
 
