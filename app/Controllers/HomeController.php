@@ -40,5 +40,7 @@ class HomeController extends BaseController
         } elseif ($vote === 'down'){
             $this->voteRepository->downvote($questionId);
         }
+        header("Location: /");
     }
+
 }
