@@ -38,6 +38,7 @@ if(!isset($_SESSION))
     <nav>
         <ul>
             <li><a href="/logout">Logout</a></li>
+            <li><a href="/">Home</a></li>
         </ul>
     </nav>
 @else
