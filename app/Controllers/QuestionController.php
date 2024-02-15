@@ -37,8 +37,12 @@ class QuestionController extends BaseController
     {
         $questionId = $_POST['question_id'];
         $questionToUpdate = $this->repository->find($questionId);
+
+        $tagRepo = new TagsRepository();
+        $tags = $tagRepo->displayAllTags();
+
         try {
-            echo $this->blade->run('question', ['question' => $questionToUpdate]);
+            echo $this->blade->run('question', ['question' => $questionToUpdate, 'tags' => $tags]);
         } catch (Exception $e) {
             echo "$e";
         }

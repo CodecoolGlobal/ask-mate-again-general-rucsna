@@ -14,10 +14,6 @@ if(!isset($_SESSION))
         <label for="question_message">Message</label>
         <input type="text" id="question_message" name="message" value="Write a question"><br/>
         <input type="hidden" name="image_id" value="1">
-
-        <a href="/tag-form">Create a new Tag</a><br/>
-        <br/>
-
         <button type="submit" name="submit">Save</button>
     </form>
     <label for="question_list"><b>Your questions</b></label><br/><br/>

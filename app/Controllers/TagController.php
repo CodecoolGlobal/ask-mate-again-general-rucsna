@@ -43,4 +43,15 @@ class TagController extends BaseController
             echo $e->getMessage();
         }
     }
+
+    public function selectTag(): void
+    {
+        try {
+            $tagRepo = new TagsRepository();
+            $tags = $tagRepo->displayAllTags();
+            echo $this->blade->run('question', ['tags' => $tags]);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }

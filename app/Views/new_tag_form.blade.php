@@ -8,6 +8,7 @@
 
         <button type="submit" name="submit">Save</button>
     </form>
+    <a href="/dashboard">Back</a>
     <nav>
         <ul>
             <li><a href="/logout">Logout</a></li>

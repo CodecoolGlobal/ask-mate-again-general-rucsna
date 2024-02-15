@@ -50,7 +50,7 @@ $routes = [
     '/save-tag' => 'TagController@addTag',
     '/deleteQuestion-action' =>'QuestionController@deleteQuestion',
     '/redirectForQuestionUpdate-action' => 'QuestionController@goToQuestionPage',
-    '/vote' => 'HomeController@vote'
+    '/vote' => 'HomeController@vote',
 ];
 
 
