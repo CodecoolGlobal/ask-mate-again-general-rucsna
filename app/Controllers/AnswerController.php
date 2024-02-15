@@ -60,4 +60,27 @@ class AnswerController extends BaseController
         header("Location: /");
     }
 
+    public function update(): void
+    {
+        $accept = $_POST['accept'];
+        $answerId = $_POST['answer_id'];
+        var_dump($answerId);
+        if($accept === "Accept answer")
+        {
+            $answerToUpdate = array(
+                'id' => $answerId,
+                'accepted' => 1,
+            );
+            $this->answerRepository->update($answerToUpdate);
+        } else
+        {
+            $answerToUpdate = array(
+                'id' => $answerId,
+                'accepted' => 0,
+            );
+            $this->answerRepository->update($answerToUpdate);
+        }
+        header('Location: /dashboard');
+
+    }
 }
