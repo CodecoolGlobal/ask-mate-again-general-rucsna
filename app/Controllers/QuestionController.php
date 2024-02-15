@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Repositories\ImageRepository;
 use App\Repositories\QuestionsRepository;
 use App\Repositories\RepositoryInterface;
 use App\Repositories\TagsRepository;
@@ -13,22 +14,42 @@ class QuestionController extends BaseController
 {
     private RepositoryInterface $repository;
     private TagsRepository $tagsRepository;
+    private ImageRepository $imageRepository;
 
     public function __construct(BladeOne $blade)
     {
         parent::__construct($blade);
         $this->repository = new QuestionsRepository();
         $this->tagsRepository = new TagsRepository();
+        $this->imageRepository = new ImageRepository();
     }
 
     #[NoReturn] public function saveQuestion(): void
     {
+
+        $uploadDir = __DIR__ . '/../../public/img/';
+        $fileName = $_FILES['image'] ['name'];
+        $tmp_name = $_FILES['image'] ['tmp_name'];
+
+        $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        if ($fileExtension !== 'png') {
+            echo "Error: Only PNG files are allowed.";
+            exit;
+        }
+
+        move_uploaded_file($tmp_name,$uploadDir.$fileName);
+
+        $image = ['directory' => 'public/img/', 'file_name' => $fileName];
+        $imgId = $this->imageRepository->saveImage($image);
+
         session_start();
-        $entity = ['image_id' => $_POST['image_id'], 'user_id' => $_SESSION['user_id'], 'title' => $_POST['title'], 'message' => $_POST['message']];
+        $entity = ['image_id' => $imgId, 'user_id' => $_SESSION['user_id'], 'title' => $_POST['title'], 'message' => $_POST['message']];
         $this->repository->save($entity);
+
         header("Location: /dashboard");
         exit;
     }
+
 
     public function goToQuestionPage(): void
     {
