@@ -11,6 +11,7 @@
     <ul>
         <li><a href="/registration-form">Register</a></li>
         <li><a href="/login">Login</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/tag-list">Tags</a></li>
         <li><a href="/user-list">User list</a></li>
     </ul>
@@ -35,6 +36,18 @@
                         <input type="hidden" name="question_id" value="{{$question['id']}}">
                         <button type="submit" name="vote" value="up">Upvote</button>
                         <button type="submit" name="vote" value="down">Downvote</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/answer" method="post">
+                        <input type="hidden" name="question_id" value="{{$question['id']}}">
+                        <button type="submit" name="vote" value="up">Answer</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/list-answers" method="post">
+                        <input type="hidden" name="question_id" value="{{$question['id']}}">
+                        <button type="submit" name="vote" value="up">List Answers</button>
                     </form>
                 </td>
                 @endif
