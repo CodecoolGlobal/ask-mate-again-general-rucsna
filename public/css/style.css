@@ -82,3 +82,9 @@ nav ul li a:hover {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
