@@ -9,19 +9,6 @@
 <h3>You can edit your question</h3>
 <h5>You can only change the fields marked with *</h5>
 
-<label>Tags</label> *<br/>
-<ul>
-    @foreach($questionTags as $tag)
-        <li>
-            <form method="post" action="/removeTag">
-                <input type="hidden" name="delete_question_id" value="{{$question->id}}">
-                <input type="hidden" name="tag_id" value="{{$tag->id}}">
-                {{$tag->name}} <button type="submit">X</button>
-            </form>
-        </li>
-    @endforeach
-</ul>
-
 <form method="post" action="/updateQuestion-action">
     <label for="question_title">Title</label>
     <input type="text" id="question_title" name="title" value="{{$question->title}}"> *<br/>
@@ -39,12 +26,27 @@
             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
         @endforeach
     </select>
-    <a href="/tag-form">Create a new Tag</a><br/>
+
     <br/><br/>
 
     <input type="hidden" name="question_id" value="{{$question->id}}">
     <button type="submit" name="submit">Update</button>
 </form>
+
+<label>Tags</label> *<br/>
+<ul>
+    @foreach($questionTags as $tag)
+        <li>
+            <form method="post" action="/removeTag">
+                <input type="hidden" name="delete_question_id" value="{{$question->id}}">
+                <input type="hidden" name="tag_id" value="{{$tag->id}}">
+                {{$tag->name}} <button type="submit">X</button>
+            </form>
+        </li>
+    @endforeach
+</ul>
+
+<a href="/tag-form">Create a new Tag</a><br/>
 
 <a href="/dashboard">Back</a>
 </body>
