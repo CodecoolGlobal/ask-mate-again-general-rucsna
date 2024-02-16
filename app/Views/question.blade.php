@@ -48,7 +48,5 @@
 
 <a href="/tag-form">Create a new Tag</a><br/>
 
-<a href="/dashboard">Back</a>
-
 </body>
 </html>
