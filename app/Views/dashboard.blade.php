@@ -18,8 +18,8 @@ if(!isset($_SESSION)) {
     <h1>Hello, {{ $_SESSION['email'] }} !</h1>
     <h2>Ask a question</h2>
     <form method="post" action="/saveQuestion-action" enctype="multipart/form-data">
-        <input type="text" id="question_title" name="title" value="Title"><br/>
-        <input type="text" id="question_message" name="message" value="Write a question"><br/>
+        <input type="text" id="question_title" name="title" placeholder="Title"><br/>
+        <input type="text" id="question_message" name="message" placeholder="Write a question"><br/>
         <input type="file" id="question_image" name="image"><br/>
         <button type="submit" name="submit">Save</button>
     </form>
