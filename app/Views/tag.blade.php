@@ -8,10 +8,11 @@
     <title>Document</title>
 </head>
 <body>
+@include('base')
     <h2>Tag categories:</h2>
     <ul>
         @foreach($tags as $tag)
-            <li>{{$tag->name}}</li>
+            <p>{{$tag->name}}</p>
         @endforeach
     </ul>
 
