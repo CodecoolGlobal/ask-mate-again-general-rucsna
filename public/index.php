@@ -34,7 +34,9 @@ $routes = [
     '/list-answers' => 'AnswerController@getAnswers',
     '/answerAction' => 'AnswerController@action',
     '/search' => 'HomeController@search',
-    '/updateAnswer' => 'AnswerController@update'
+    '/updateAnswer' => 'AnswerController@update',
+    '/removeTag' => 'TagController@deleteTag'
+
 ];
 
 if (array_key_exists($uri, $routes)) {

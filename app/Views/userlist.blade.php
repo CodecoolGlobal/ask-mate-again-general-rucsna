@@ -1,3 +1,4 @@
+@include('base')
 <h1>User list</h1>
 <table>
     <tr>
@@ -17,4 +18,3 @@
         </tr>
     @endforeach
 </table>
-<a href="/">Back</a>

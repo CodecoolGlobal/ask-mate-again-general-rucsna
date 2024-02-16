@@ -1,0 +1,90 @@
+
+body {
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1, h2, label, input[type="text"], input[type="file"], button, table, th, td, nav ul {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+nav ul {
+    display: inline-block;
+}
+
+input[type="text"],
+input[type="file"],
+button {
+    background-color: #e0f0ff;
+    border: 1px solid #4682b4;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #4682b4;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid #4682b4;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #e0f0ff;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #4682b4;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #357ebd;
+}
+
+#question_list tr {
+    font-size: 18px;
+}
+
+#question_list input[type="submit"] {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
