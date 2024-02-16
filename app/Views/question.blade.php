@@ -47,7 +47,9 @@
 </ul>
 
 <a href="/tag-form">Create a new Tag</a><br/>
-
+<br/>
+<h4>Answers:</h4>
+<ul>
 @foreach($answers as $answer)
     <li>{{$answer['message']}} {{$answer['vote_number']}} {{$answer['accepted'] ? 'accepted' : ""}}</li>
     @if(!$answer['accepted'])
@@ -63,6 +65,7 @@
         </form>
     @endif
 @endforeach
+</ul>
 
 </body>
 </html>
