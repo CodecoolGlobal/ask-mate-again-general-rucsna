@@ -48,5 +48,21 @@
 
 <a href="/tag-form">Create a new Tag</a><br/>
 
+@foreach($answers as $answer)
+    <li>{{$answer['message']}} {{$answer['vote_number']}} {{$answer['accepted'] ? 'accepted' : ""}}</li>
+    @if(!$answer['accepted'])
+        <form method="post" action="/updateAnswer">
+            <input type="hidden" name="answer_id" value="{{$answer['id']}}">
+            <input type="submit" name="accept" value="Accept answer">
+        </form>
+    @endif
+    @if($answer['accepted'])
+        <form method="post" action="/updateAnswer">
+            <input type="hidden" name="answer_id" value="{{$answer['id']}}">
+            <input type="submit" name="accept" value="Withdraw accept">
+        </form>
+    @endif
+@endforeach
+
 </body>
 </html>

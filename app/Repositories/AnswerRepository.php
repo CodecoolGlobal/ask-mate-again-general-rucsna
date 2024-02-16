@@ -46,9 +46,9 @@ class AnswerRepository implements RepositoryInterface
 
     public function update($entity): void
     {
-        $sql = 'UPDATE answer SET message = :message WHERE id = :id';
+        $sql = 'UPDATE answer SET accepted = :accepted WHERE id = :id';
         $updateAnswer = $this->PDO->prepare($sql);
-        $updateAnswer->execute(['message' => $entity['message'], 'id' => $entity['id']]);
+        $updateAnswer->execute(['accepted' => $entity['accepted'], 'id' => $entity['id']]);
     }
 
     public function delete(int $id): void
@@ -56,5 +56,14 @@ class AnswerRepository implements RepositoryInterface
         $sql = 'DELETE FROM answer WHERE id = :id';
         $deleteAnswer = $this->PDO->prepare($sql);
         $deleteAnswer->execute(['id' => $id]);
+    }
+
+    public function findAnswersByQuestionId(int $question_id): array
+    {
+        $sql = 'SELECT * FROM answer WHERE id_question = :id_question';
+        $selectAnswers = $this->PDO->prepare($sql);
+        $selectAnswers->execute(['id_question' => $question_id]);
+
+        return $selectAnswers->fetchAll(PDO::FETCH_ASSOC);
     }
 }
